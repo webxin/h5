@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+ <html>
+ <head>
+    <title></title>
+    <script type="text/javascript">
+        if(typeof(Worker)!=="undefined"){
+            var worker=new Worker("./index.js");
+            worker.postMessage("1343");
+            worker.onmessage=function(ev){
+                alert(ev.data)
+            }
+        }
+    </script>
+ </head>
+<body>
+
+</body>
+</html> 
