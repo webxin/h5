@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta  content="charset=UTF-8">
+<title></title>
+</head>
+<body>
+<canvas id="canvas" width="400" height="400" style="border:1px solid #ccc;">
+    此浏览器不支持,请换个浏览器打开
+</canvas>
+<script src="index.js"></script>
+<script type="text/javascript">
+var RAdius=4;
+var Margin_Left=0;
+var Margin_Top=0;
+window.onload=function(){
+    var canvas=document.getElementById("canvas");
+    var context=canvas.getContext("2d");
+    render(context);
+};
+function render(context){
+    var hour=10;
+    var min=29;
+    renderDigit(Margin_Left,Margin_Top,parseInt(hour/10),context);
+    renderDigit(Margin_Left+15*(RAdius+1),Margin_Top,parseInt(hour%10),context);    
+    renderDigit(Margin_Left+30*(RAdius+1),Margin_Top,10,context);  
+    renderDigit(Margin_Left+39*(RAdius+1),Margin_Top,parseInt(min/10),context);
+    renderDigit(Margin_Left+54*(RAdius+1),Margin_Top,parseInt(min%10),context);  
+}
+function renderDigit(x,y,num,context){
+    context.fillStyle="#fff000";
+    for(var i=0;i<digit[num].length;i++){
+        for(var j=0;j<digit[num][i].length;j++){
+            if(digit[num][i][j]==1){
+               context.beginPath();
+               context.arc(x+j*2*(RAdius+1)+(RAdius+1),y+i*2*(RAdius+1)+(RAdius+1),RAdius,0,2*Math.PI); 
+               context.closePath();
+               context.fill();
+            }
+        }
+    }
+}
+</script>
+</body>
+</html>
+
