@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta  content="charset=UTF-8">
+<title></title>
+</head>
+<body>
+<canvas id="canvas" width="400" height="400" style="border:1px solid #ccc;">
+    此浏览器不支持,请换个浏览器打开
+</canvas>
+<script type="text/javascript">
+var arr=[
+    [{x:0,y:0},{x:200,y:0},{x:0,y:100},{x:0,y:0}],
+    [{x:0,y:100},{x:100,y:200},{x:0,y:200},{x:0,y:100}],
+    [{x:0,y:100},{x:100,y:200},{x:200,y:100},{x:200,y:0},{x:0,y:100}],
+    [{x:100,y:200},{x:200,y:200},{x:200,y:100},{x:100,y:200}]
+];
+
+var canvas=document.getElementById("canvas");
+var context=canvas.getContext("2d");
+
+function drawImage(arrSingles,color,context){
+    var arr=arrSingles;
+    context.beginPath();
+    context.moveTo(arr[0].x,arr[0].y)
+    for(var i=1;i<arr.length;i++){
+        context.lineTo(arr[i].x,arr[i].y);
+    }
+    context.closePath();
+    context.fillStyle=color;
+    context.fill();
+}
+
+drawImage(arr[0],"pink",context);
+drawImage(arr[1],"green",context);
+drawImage(arr[2],"blue",context);
+drawImage(arr[3],"yellow",context);
+
+</script>
+</body>
+</html>
+
