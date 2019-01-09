@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<meta charset="utf-8" />
+</head>
+<body>
+<div id="list">
+	<a data-id="1">1</a>
+	<a data-id="2">2</a>
+	<a data-id="3">3</a>
+	<a data-id="4">4</a>
+</div>
+<div id="content">
+</div>
+<script>
+(function(){
+	var state={
+		init:function(){
+			var val=window.location.search.split("=")[1];
+			if(val){ state.contentReq(val)  }
+		},
+		getContent:function(ev){
+			var id=ev.target.getAttribute("data-id");
+			if(id){
+				history.pushState({id:id},null,"test.html?id="+id);
+				state.contentReq(id);	
+			}
+		},
+		getHistory:function(ev){
+			var id=ev.state.id;
+			state.contentReq(id);
+		},
+		contentReq:function(id){
+			//$.ajax({  })
+			document.getElementById("content").innerHTML=id;
+		}
+	};
+
+	var list=document.getElementById("list");
+	list.addEventListener("click",state.getContent,false);
+	window.addEventListener("popstate",state.getHistory,false); 
+	state.init();
+
+})()
+</script>
+</body>
+</html>
